@@ -1,0 +1,44 @@
+services:
+  grownote-db:
+    image: postgres:15
+    container_name: grownote-db
+    restart: always
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: grownote
+    ports:
+      - "5432:5432"
+    volumes:
+      - grownote_postgres_data:/var/lib/postgresql/data
+
+  grownote-nestjs:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: grownote-nestjs
+    depends_on:
+      - grownote-db
+    environment:
+      DATABASE_URL: postgres://devuser:devpass@grownote-db:5432/grownote
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+    command: npm run start:dev
+
+  grownote-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: grownote-frontend
+    depends_on:
+      - grownote-nestjs
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    command: npm run dev
+
+volumes:
+  grownote_postgres_data:
