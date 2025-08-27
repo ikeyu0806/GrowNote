@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix-serve build/index.js",
+    "build": "remix vite:build",
+    "dev": "remix vite:dev --host 0.0.0.0",
+    "remix-serve": "remix-serve build/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "fmt": "prettier --write '**/*.{js,jsx,ts,tsx,json,md}'"
   },
