@@ -1,5 +1,4 @@
 import { Links, Meta, Outlet, Scripts } from '@remix-run/react'
-import { Button } from 'flowbite-react'
 
 export default function App() {
   return (
@@ -12,7 +11,6 @@ export default function App() {
       </head>
       <body>
         <h1 class='text-3xl font-bold underline'>Hello TypeScript!</h1>
-        <Button>Click me</Button>
         <Outlet />
 
         <Scripts />
