@@ -10,7 +10,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <h1 class='text-3xl font-bold underline'>Hello TypeScript!</h1>
+        <h1 class='text-3xl font-bold underline'>GrowNote</h1>
         <Outlet />
 
         <Scripts />
