@@ -1,4 +1,5 @@
 import { Links, Meta, Outlet, Scripts } from '@remix-run/react'
+import { Header } from './components/layout/Header.tsx'
 
 export default function App() {
   return (
@@ -10,7 +11,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <h1 class='text-3xl font-bold underline'>GrowNote</h1>
+        <Header />
         <Outlet />
 
         <Scripts />
