@@ -1,14 +1,3 @@
-import React from 'react'
-
-type InputFormProps = {
-  id: string
-  label: string
-  value?: string
-  type?: string
-  placeholder?: string
-  required?: boolean
-}
-
 export const InputForm = ({
   id,
   label,
