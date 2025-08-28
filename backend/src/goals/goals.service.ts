@@ -22,4 +22,10 @@ export class GoalsService {
       },
     })
   }
+
+  async findAll() {
+    return prisma.goal.findMany({
+      orderBy: { createdAt: 'desc' },
+    })
+  }
 }

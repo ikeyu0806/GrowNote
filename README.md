@@ -25,6 +25,13 @@ nest g controller goals
 ```
 
 サンプルリクエスト
+
+目標一覧取得
+```
+curl http://localhost:4000/api/internal/goals
+```
+
+目標登録
 ```
 curl -X POST http://localhost:4000/api/internal/goals \
   -H "Content-Type: application/json" \

@@ -1,9 +1,14 @@
-import { Controller, Post, Body } from '@nestjs/common'
+import { Controller, Get, Post, Body } from '@nestjs/common'
 import { GoalsService } from './goals.service'
 
 @Controller('api/internal/goals')
 export class GoalsController {
   constructor(private readonly goalsService: GoalsService) {}
+
+  @Get()
+  findAll() {
+    return this.goalsService.findAll()
+  }
 
   @Post()
   async create(
