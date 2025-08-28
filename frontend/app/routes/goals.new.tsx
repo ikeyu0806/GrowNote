@@ -15,7 +15,12 @@ export default function CreateGoal() {
 
   return (
     <>
-      <InputForm id='goalTitle' label='目標タイトル' value={title} />
+      <InputForm
+        id='goalTitle'
+        label='目標タイトル'
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
       <TextareaForm
         id='goalDescription'
         label='説明'
@@ -27,6 +32,7 @@ export default function CreateGoal() {
         label='目標期日'
         type='date'
         value={targetDate}
+        onChange={(e) => setTargetDate(e.target.value)}
       />
       <Button onClick={() => console.log('clicked')}>登録する</Button>
     </>

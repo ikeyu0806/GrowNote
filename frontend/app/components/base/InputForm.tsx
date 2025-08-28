@@ -1,7 +1,8 @@
 export const InputForm = ({
   id,
   label,
-  value = '',
+  value,
+  onChange,
   type = 'text',
   placeholder = '',
   required = false,
@@ -18,6 +19,7 @@ export const InputForm = ({
         type={type}
         id={id}
         value={value}
+        onChange={onChange}
         placeholder={placeholder}
         required={required}
         className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
