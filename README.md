@@ -55,6 +55,11 @@ curl -X PATCH http://localhost:4000/api/internal/goals/a7a16174-bdaf-424a-a665-9
   -d '{"title":"更新テスト","status":"completed"}'
 ```
 
+slugをキーに削除
+```
+curl -X DELETE http://localhost:4000/api/internal/goals/a7a16174-bdaf-424a-a665-9d2eee1780db
+```
+
 ## Prisma
 ```
 npx prisma db pull

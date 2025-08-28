@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Patch, Body, Param } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common'
 import { GoalsService } from './goals.service'
 
 @Controller('api/internal/goals')
@@ -40,5 +48,10 @@ export class GoalsController {
     },
   ) {
     return this.goalsService.updateBySlug(slug, body)
+  }
+
+  @Delete(':slug')
+  deleteBySlug(@Param('slug') slug: string) {
+    return this.goalsService.deleteBySlug(slug)
   }
 }

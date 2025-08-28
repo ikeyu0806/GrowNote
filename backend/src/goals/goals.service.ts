@@ -65,4 +65,11 @@ export class GoalsService {
       },
     })
   }
+
+  async deleteBySlug(slug: string) {
+    const goal = await prisma.goal.findUnique({ where: { slug } })
+    if (!goal) throw new NotFoundException(`Goal with slug "${slug}" not found`)
+
+    return prisma.goal.delete({ where: { slug } })
+  }
 }
