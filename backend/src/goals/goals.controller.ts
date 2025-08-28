@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common'
+import { Controller, Get, Post, Body, Param } from '@nestjs/common'
 import { GoalsService } from './goals.service'
 
 @Controller('api/internal/goals')
@@ -8,6 +8,11 @@ export class GoalsController {
   @Get()
   findAll() {
     return this.goalsService.findAll()
+  }
+
+  @Get(':slug')
+  findBySlug(@Param('slug') slug: string) {
+    return this.goalsService.findBySlug(slug)
   }
 
   @Post()

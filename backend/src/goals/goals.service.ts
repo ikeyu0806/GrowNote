@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { PrismaClient } from '../../generated/prisma'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -27,5 +27,17 @@ export class GoalsService {
     return prisma.goal.findMany({
       orderBy: { createdAt: 'desc' },
     })
+  }
+
+  async findBySlug(slug: string) {
+    const goal = await prisma.goal.findUnique({
+      where: { slug },
+    })
+
+    if (!goal) {
+      throw new NotFoundException(`Goal with slug "${slug}" not found`)
+    }
+
+    return goal
   }
 }

@@ -31,6 +31,11 @@ nest g controller goals
 curl http://localhost:4000/api/internal/goals
 ```
 
+slugをキーに目標1件取得
+```
+curl http://localhost:4000/api/internal/goals/a7a16174-bdaf-424a-a665-9d2eee1780db
+```
+
 目標登録
 ```
 curl -X POST http://localhost:4000/api/internal/goals \
