@@ -24,6 +24,18 @@ nest g service goals
 nest g controller goals
 ```
 
+サンプルリクエスト
+```
+curl -X POST http://localhost:4000/api/internal/goals \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "フルマラソン",
+    "description": "12月のフルマラソンに向けて練習",
+    "target_date": "2025-12-01",
+    "status": "ongoing"
+  }'
+```
+
 ## Prisma
 ```
 npx prisma db pull
