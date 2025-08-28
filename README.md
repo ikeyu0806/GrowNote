@@ -16,3 +16,8 @@ DB接続
 docker compose exec grownote-db psql -U devuser -d grownote
 ```
 
+## Prisma
+```
+npx prisma db pull
+npx prisma migrate dev
+```
