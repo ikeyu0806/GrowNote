@@ -48,6 +48,13 @@ curl -X POST http://localhost:4000/api/internal/goals \
   }'
 ```
 
+slugをキーに更新
+```
+curl -X PATCH http://localhost:4000/api/internal/goals/a7a16174-bdaf-424a-a665-9d2eee1780db \
+  -H "Content-Type: application/json" \
+  -d '{"title":"更新テスト","status":"completed"}'
+```
+
 ## Prisma
 ```
 npx prisma db pull

@@ -40,4 +40,29 @@ export class GoalsService {
 
     return goal
   }
+
+  async updateBySlug(
+    slug: string,
+    data: {
+      title?: string
+      description?: string
+      target_date?: string
+      status?: 'ongoing' | 'completed' | 'abandoned'
+    },
+  ) {
+    const goal = await prisma.goal.findUnique({ where: { slug } })
+    if (!goal) throw new NotFoundException(`Goal with slug "${slug}" not found`)
+
+    return prisma.goal.update({
+      where: { slug },
+      data: {
+        title: data.title ?? goal.title,
+        description: data.description ?? goal.description,
+        targetDate: data.target_date
+          ? new Date(data.target_date)
+          : goal.targetDate,
+        status: data.status ?? goal.status,
+      },
+    })
+  }
 }
