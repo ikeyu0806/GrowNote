@@ -1,3 +1,5 @@
+import React from 'react'
+import axios from 'axios'
 import { InputForm } from '../components/base/InputForm'
 import { TextareaForm } from '../components/base/TextareaForm'
 import { Button } from '../components/base/Button'
@@ -12,6 +14,24 @@ export default function CreateGoal() {
   const [title, setTitle] = useAtom(goalTitleAtom)
   const [description, setDescription] = useAtom(goalDescriptionAtom)
   const [targetDate, setTargetDate] = useAtom(goalTargetDateAtom)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    try {
+      await axios.post('http://localhost:4000/api/internal/goals', {
+        title,
+        description,
+      })
+      alert('Goal created!')
+      // 成功後はフォームをリセットするなど
+      setTitle('')
+      setDescription('')
+    } catch (error) {
+      console.error('Error creating goal:', error)
+      alert('Failed to create goal')
+    }
+  }
 
   return (
     <>
@@ -35,7 +55,7 @@ export default function CreateGoal() {
         value={targetDate}
         onChange={(e) => setTargetDate(e.target.value)}
       />
-      <Button onClick={() => console.log('clicked')}>登録する</Button>
+      <Button onClick={handleSubmit}>登録する</Button>
     </>
   )
 }
