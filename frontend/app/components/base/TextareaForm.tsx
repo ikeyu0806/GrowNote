@@ -1,7 +1,8 @@
 export const TextareaForm = ({
   id,
   label,
-  value = '',
+  value,
+  onChange,
   placeholder = '',
   required = false,
   rows = 4,
@@ -18,6 +19,7 @@ export const TextareaForm = ({
         id={id}
         rows={rows}
         value={value}
+        onChange={onChange}
         placeholder={placeholder}
         required={required}
         className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border 

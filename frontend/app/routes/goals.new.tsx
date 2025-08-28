@@ -26,6 +26,7 @@ export default function CreateGoal() {
         label='説明'
         rows={8}
         value={description}
+        onChange={(e) => setDescription(e.target.value)}
       />
       <InputForm
         id='goalTitle'
