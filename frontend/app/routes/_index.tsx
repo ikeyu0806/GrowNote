@@ -27,10 +27,17 @@ export default function Dashboard() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <ul>
         {goals.map((goal) => (
-          <li key={goal.id}>
-            {goal.title} - {goal.description}
-            <a href={`/goals/${goal.slug}/edit`}>編集する</a>
-          </li>
+          <div
+            class='max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 grid grid-cols-12 gap-4'
+            key={goal.id}
+          >
+            <div className='col-span-3'>
+              {goal.title} - {goal.description}
+            </div>
+            <div className='col-span-3'>
+              <a href={`/goals/${goal.slug}/edit`}>編集する</a>
+            </div>
+          </div>
         ))}
       </ul>
     </div>
