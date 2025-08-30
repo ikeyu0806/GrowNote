@@ -23,7 +23,9 @@ export default function EditGoal() {
   useEffect(() => {
     const fetchGoal = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/internal/goals/${slug}`)
+        const res = await axios.get(
+          `http://localhost:4000/api/internal/goals/${slug}`,
+        )
         const goal = res.data
         setTitle(goal.title || '')
         setDescription(goal.description || '')
@@ -52,7 +54,7 @@ export default function EditGoal() {
     }
   }
 
-const handleDelete = async () => {
+  const handleDelete = async () => {
     if (!window.confirm('本当に削除しますか？')) return
     try {
       await axios.delete(`http://localhost:4000/api/internal/goals/${slug}`)
