@@ -25,7 +25,8 @@ services:
       - "4000:4000"
     volumes:
       - ./backend:/app
-    command: sh -c "npx prisma generate && npm run start:dev"
+    # command: sh -c "npx prisma generate && npm run start:dev"
+    command: tail -f /dev/null
 
   grownote-frontend:
     build:

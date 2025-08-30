@@ -65,3 +65,7 @@ curl -X DELETE http://localhost:4000/api/internal/goals/a7a16174-bdaf-424a-a665-
 npx prisma db pull
 npx prisma migrate dev
 ```
+
+```
+npx prisma migrate dev --name add_progress_log
+```

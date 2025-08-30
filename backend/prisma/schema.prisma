@@ -15,18 +15,39 @@ datasource db {
 }
 
 model Goal {
-  id          String   @id @default(uuid()) @db.Uuid
-  slug        String   @unique @db.Uuid
+  id          Int           @id @default(autoincrement())
+  slug        String        @unique @db.Uuid
   title       String
   description String?
-  targetDate  DateTime? @db.Date
-  status      GoalStatus @default(ongoing)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  targetDate  DateTime?     @db.Date
+  status      GoalStatus    @default(ongoing)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  ProgressLog ProgressLog[]
 }
 
 enum GoalStatus {
   ongoing
   completed
   abandoned
+}
+
+model ProgressLog {
+  id           Int      @id @default(autoincrement())
+  slug         String   @default(uuid())
+  goalId       Int
+  goal         Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  date         DateTime
+  content      String
+  studyTime    Int? // 任意なので nullable
+  progressRate Int? // 0-100 の範囲はアプリ側で validation する
+  mood         Mood? // enum を定義する
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Mood {
+  good
+  normal
+  bad
 }
