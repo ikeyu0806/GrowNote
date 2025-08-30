@@ -29,7 +29,7 @@ export default function EditGoal() {
         setDescription(goal.description || '')
         setTargetDate(goal.targetDate ? goal.targetDate.slice(0, 10) : '') // "2025-08-28" 形式
       } catch (err) {
-        console.error('Error fetching goal:', err)
+        console.error('error:', err)
         alert('目標の取得に失敗しました')
       }
     }
@@ -44,11 +44,23 @@ export default function EditGoal() {
         description,
         targetDate,
       })
-      alert('Goal updated!')
-      navigate('/goals') // 更新後に一覧へ戻す
+      alert('更新しました')
+      navigate('/')
     } catch (err) {
       console.error('Error updating goal:', err)
       alert('更新に失敗しました')
+    }
+  }
+
+const handleDelete = async () => {
+    if (!window.confirm('本当に削除しますか？')) return
+    try {
+      await axios.delete(`http://localhost:4000/api/internal/goals/${slug}`)
+      alert('削除しました')
+      navigate('/')
+    } catch (err) {
+      console.error('error:', err)
+      alert('削除しました')
     }
   }
 
@@ -75,6 +87,7 @@ export default function EditGoal() {
         onChange={(e) => setTargetDate(e.target.value)}
       />
       <Button onClick={handleUpdate}>更新する</Button>
+      <Button onClick={handleDelete}>削除する</Button>
     </>
   )
 }
