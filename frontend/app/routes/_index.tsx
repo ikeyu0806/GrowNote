@@ -29,6 +29,7 @@ export default function Dashboard() {
         {goals.map((goal) => (
           <li key={goal.id}>
             {goal.title} - {goal.description}
+            <a href={`/goals/${goal.slug}/edit`}>編集する</a>
           </li>
         ))}
       </ul>
