@@ -22,17 +22,19 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className='mb-4'>目標一覧</div>
+      <div className='text-lg font-bold mb-4'>目標一覧</div>
       {goals.map((goal) => (
         <div
-          class='p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 grid grid-cols-6 gap-4 mb-2'
+          class='p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 grid grid-cols-12 gap-4 mb-2'
           key={goal.id}
         >
-          <div className='col-span-3'>
-            {goal.title} - {goal.description}
-          </div>
+          <div className='col-span-3'>{goal.title}</div>
+          <div className='col-span-3'>{goal.description}</div>
           <div className='col-span-3'>
             <a href={`/goals/${goal.slug}/edit`}>編集する</a>
+          </div>
+          <div className='col-span-3'>
+            <a href={`/goals/${goal.slug}/milestons`}>マイルストーン</a>
           </div>
         </div>
       ))}
