@@ -21,25 +21,21 @@ export default function Dashboard() {
   }, [])
 
   return (
-    <div>
-      <div>目標一覧</div>
-      {loading && <p>読み込み中...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <ul>
-        {goals.map((goal) => (
-          <div
-            class='max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 grid grid-cols-12 gap-4'
-            key={goal.id}
-          >
-            <div className='col-span-3'>
-              {goal.title} - {goal.description}
-            </div>
-            <div className='col-span-3'>
-              <a href={`/goals/${goal.slug}/edit`}>編集する</a>
-            </div>
+    <>
+      <div className='mb-4'>目標一覧</div>
+      {goals.map((goal) => (
+        <div
+          class='p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 grid grid-cols-6 gap-4 mb-2'
+          key={goal.id}
+        >
+          <div className='col-span-3'>
+            {goal.title} - {goal.description}
           </div>
-        ))}
-      </ul>
-    </div>
+          <div className='col-span-3'>
+            <a href={`/goals/${goal.slug}/edit`}>編集する</a>
+          </div>
+        </div>
+      ))}
+    </>
   )
 }
