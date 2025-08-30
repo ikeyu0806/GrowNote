@@ -88,8 +88,12 @@ export default function EditGoal() {
         value={targetDate}
         onChange={(e) => setTargetDate(e.target.value)}
       />
-      <Button onClick={handleUpdate}>更新する</Button>
-      <Button onClick={handleDelete}>削除する</Button>
+      <div className='flex justify-between'>
+        <Button onClick={handleUpdate}>更新する</Button>
+        <Button onClick={handleDelete} variant='red'>
+          削除する
+        </Button>
+      </div>
     </>
   )
 }
