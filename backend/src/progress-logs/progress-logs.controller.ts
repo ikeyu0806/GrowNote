@@ -1,7 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ProgressLogsService } from './progress-logs.service';
-import { CreateProgressLogDto } from './dto/create-progress-log.dto';
-import { UpdateProgressLogDto } from './dto/update-progress-log.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common'
+import { ProgressLogsService } from './progress-logs.service'
+import { CreateProgressLogDto } from './dto/create-progress-log.dto'
+import { UpdateProgressLogDto } from './dto/update-progress-log.dto'
 
 @Controller('progress-logs')
 export class ProgressLogsController {
@@ -9,26 +17,29 @@ export class ProgressLogsController {
 
   @Post()
   create(@Body() createProgressLogDto: CreateProgressLogDto) {
-    return this.progressLogsService.create(createProgressLogDto);
+    return this.progressLogsService.create(createProgressLogDto)
   }
 
   @Get()
   findAll() {
-    return this.progressLogsService.findAll();
+    return this.progressLogsService.findAll()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.progressLogsService.findOne(+id);
+    return this.progressLogsService.findOne(+id)
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProgressLogDto: UpdateProgressLogDto) {
-    return this.progressLogsService.update(+id, updateProgressLogDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateProgressLogDto: UpdateProgressLogDto,
+  ) {
+    return this.progressLogsService.update(+id, updateProgressLogDto)
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.progressLogsService.remove(+id);
+    return this.progressLogsService.remove(+id)
   }
 }
