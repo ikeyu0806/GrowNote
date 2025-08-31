@@ -33,7 +33,7 @@ export default function Dashboard() {
       <div className='text-lg font-bold mb-4'>目標一覧</div>
       {goals.map((goal) => (
         <div
-          class='p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 grid grid-cols-12 gap-4 mb-2'
+          className='p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 grid grid-cols-12 gap-4 mb-2'
           key={goal.id}
         >
           <div className='col-span-3'>{goal.title}</div>
@@ -54,10 +54,12 @@ export default function Dashboard() {
       ))}
       <Modal
         isOpen={showProgressModal}
-        title={'test'}
+        title='進捗登録'
         onClose={() => setShowProgressModal(false)}
       >
-        <div><EditProgressLogForm /></div>
+        <div>
+          <EditProgressLogForm />
+        </div>
       </Modal>
     </>
   )

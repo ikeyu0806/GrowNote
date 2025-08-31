@@ -13,7 +13,7 @@ export default function EditProgressLogForm() {
         id='progressLogProgressRate'
         label='学習時間'
         value={progressLogProgressRateAtom}
-        onChange={(e) => setProgressLogProgressRate(e.target.value)}
+        onChange={(e) => setProgressLogProgressRate(Number(e.target.value))}
         type='number'
       />
     </>
