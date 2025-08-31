@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Modal from '../components/base/Modal'
 
 export default function Dashboard() {
   const [goals, setGoals] = useState<any[]>([])
@@ -30,14 +31,16 @@ export default function Dashboard() {
         >
           <div className='col-span-3'>{goal.title}</div>
           <div className='col-span-3'>{goal.description}</div>
-          <div className='col-span-3'>
+          <div className='col-span-2'>
             <a href={`/goals/${goal.slug}/edit`}>編集する</a>
           </div>
-          <div className='col-span-3'>
+          <div className='col-span-2'>
             <a href={`/goals/${goal.slug}/milestons`}>マイルストーン</a>
           </div>
+          <div className='col-span-2'>進捗管理</div>
         </div>
       ))}
+      <Modal isOpen={true} title={'test'} onClose={console.log('onClose')}><div>test</div></Modal>
     </>
   )
 }
