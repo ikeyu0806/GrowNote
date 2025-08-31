@@ -6,6 +6,23 @@ const prisma = new PrismaClient()
 
 @Injectable()
 export class ProgressLogsService {
+  async findAll(goalSlug: string) {
+    // Goal が存在するかチェック
+    const goal = await prisma.goal.findUnique({
+      where: { slug: goalSlug },
+      include: { ProgressLog: true },
+    })
+
+    if (!goal) {
+      throw new NotFoundException(`Goal with slug "${goalSlug}" not found`)
+    }
+
+    return {
+      goalSlug,
+      logs: goal.ProgressLog,
+    }
+  }
+
   async create(goalSlug: string, createProgressLogDto: CreateProgressLogDto) {
     const goal = await prisma.goal.findUnique({
       where: { slug: goalSlug },
