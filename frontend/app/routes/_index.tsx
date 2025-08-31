@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Modal from '../components/base/Modal'
+import EditProgressLogForm from '../components/progressLog/EditForm'
 import { useAtom } from 'jotai'
 import { showCreateProgressModalAtom } from '../atoms/progressLogModalAtoms'
 
@@ -56,7 +57,7 @@ export default function Dashboard() {
         title={'test'}
         onClose={() => setShowProgressModal(false)}
       >
-        <div>test</div>
+        <div><EditProgressLogForm /></div>
       </Modal>
     </>
   )
