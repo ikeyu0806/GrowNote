@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Modal from '../components/base/Modal'
+import { useAtom } from 'jotai'
+import { showCreateProgressModalAtom } from '../atoms/progressLogModalAtoms'
 
 export default function Dashboard() {
   const [goals, setGoals] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  const [showProgressModal, setShowProgressModal] = useAtom(
+    showCreateProgressModalAtom,
+  )
 
   useEffect(() => {
     axios
@@ -37,10 +43,21 @@ export default function Dashboard() {
           <div className='col-span-2'>
             <a href={`/goals/${goal.slug}/milestons`}>マイルストーン</a>
           </div>
-          <div className='col-span-2'>進捗管理</div>
+          <div
+            onClick={() => setShowProgressModal(true)}
+            className='col-span-2'
+          >
+            進捗管理
+          </div>
         </div>
       ))}
-      <Modal isOpen={true} title={'test'} onClose={console.log('onClose')}><div>test</div></Modal>
+      <Modal
+        isOpen={showProgressModal}
+        title={'test'}
+        onClose={() => setShowProgressModal(false)}
+      >
+        <div>test</div>
+      </Modal>
     </>
   )
 }
