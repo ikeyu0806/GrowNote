@@ -62,14 +62,14 @@ curl -X DELETE http://localhost:4000/api/internal/goals/a7a16174-bdaf-424a-a665-
 
 目標進捗登録
 ```
-curl -X POST http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70d8f96dac71/progress-logs \
+curl -X POST http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70d8f96dac71/progress_logs \
   -H "Content-Type: application/json" \
   -d '{
     "date": "2025-08-31T12:00:00Z",
     "content": "今日は2時間アルゴリズム問題を解いた。",
     "studyTime": 120,
     "progressRate": 40,
-    "mood": "HAPPY"
+    "mood": "good"
   }'
 ```
 
