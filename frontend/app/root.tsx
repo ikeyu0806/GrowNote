@@ -14,7 +14,10 @@ export default function App() {
       </head>
       <body>
         <Header />
-        <Outlet />
+
+        <div className='px-8'>
+          <Outlet />
+        </div>
 
         <Scripts />
       </body>
