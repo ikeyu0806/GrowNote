@@ -36,7 +36,7 @@ export class ProgressLogsService {
     const progressLog = await prisma.progressLog.create({
       data: {
         goalId: goal.id, // 外部キー
-        date: createProgressLogDto.date,
+        date: new Date(createProgressLogDto.date),
         content: createProgressLogDto.content,
         studyTime: createProgressLogDto.studyTime,
         progressRate: createProgressLogDto.progressRate,
