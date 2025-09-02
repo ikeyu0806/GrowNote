@@ -4,6 +4,7 @@ import Modal from '../components/base/Modal'
 import EditProgressLogForm from '../components/progressLog/EditForm'
 import { useAtom } from 'jotai'
 import { showCreateProgressModalAtom } from '../atoms/progressLogModalAtoms'
+import { progressLogGoalSlugAtom } from '../atoms/progressLogAtmos'
 
 export default function Dashboard() {
   const [goals, setGoals] = useState<any[]>([])
@@ -12,6 +13,9 @@ export default function Dashboard() {
 
   const [showProgressModal, setShowProgressModal] = useAtom(
     showCreateProgressModalAtom,
+  )
+  const [progressGoalSlug, setProgressGoalSlug] = useAtom(
+    progressLogGoalSlugAtom,
   )
 
   useEffect(() => {
@@ -45,7 +49,10 @@ export default function Dashboard() {
             <a href={`/goals/${goal.slug}/milestons`}>マイルストーン</a>
           </div>
           <div
-            onClick={() => setShowProgressModal(true)}
+            onClick={() => {
+              setShowProgressModal(true)
+              setProgressGoalSlug(goal.slug)
+            }}
             className='col-span-2'
           >
             進捗管理
