@@ -3,7 +3,10 @@ import axios from 'axios'
 import Modal from '../components/base/Modal'
 import EditProgressLogForm from '../components/progressLog/EditForm'
 import { useAtom } from 'jotai'
-import { showCreateProgressModalAtom } from '../atoms/progressLogModalAtoms'
+import {
+  showIndexProgressModalAtom,
+  showCreateProgressModalAtom,
+} from '../atoms/progressLogModalAtoms'
 import { progressLogGoalSlugAtom } from '../atoms/progressLogAtmos'
 
 export default function Dashboard() {
@@ -11,7 +14,10 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const [showRegisterProgressModal, setShowRegisterProgressModal] = useAtom(
+  const [showIndexProgressModal, setShowIndexProgressModal] = useAtom(
+    showIndexProgressModalAtom,
+  )
+  const [showCreateProgressModal, setShowCreateProgressModal] = useAtom(
     showCreateProgressModalAtom,
   )
   const [progressGoalSlug, setProgressGoalSlug] = useAtom(
@@ -50,7 +56,16 @@ export default function Dashboard() {
           </div>
           <div
             onClick={() => {
-              setShowRegisterProgressModal(true)
+              setShowIndexProgressModal(true)
+              setProgressGoalSlug(goal.slug)
+            }}
+            className='col-span-2'
+          >
+            進捗一覧
+          </div>
+          <div
+            onClick={() => {
+              setShowCreateProgressModal(true)
               setProgressGoalSlug(goal.slug)
             }}
             className='col-span-2'
@@ -60,9 +75,16 @@ export default function Dashboard() {
         </div>
       ))}
       <Modal
-        isOpen={showRegisterProgressModal}
+        isOpen={showIndexProgressModal}
+        title='進捗一覧'
+        onClose={() => setShowIndexProgressModal(false)}
+      >
+        <div>進捗一覧</div>
+      </Modal>
+      <Modal
+        isOpen={showCreateProgressModal}
         title='進捗登録'
-        onClose={() => setShowRegisterProgressModal(false)}
+        onClose={() => setShowCreateProgressModal(false)}
       >
         <div>
           <EditProgressLogForm />
