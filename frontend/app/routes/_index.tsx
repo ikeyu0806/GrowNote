@@ -11,7 +11,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const [showProgressModal, setShowProgressModal] = useAtom(
+  const [showRegisterProgressModal, setShowRegisterProgressModal] = useAtom(
     showCreateProgressModalAtom,
   )
   const [progressGoalSlug, setProgressGoalSlug] = useAtom(
@@ -50,19 +50,19 @@ export default function Dashboard() {
           </div>
           <div
             onClick={() => {
-              setShowProgressModal(true)
+              setShowRegisterProgressModal(true)
               setProgressGoalSlug(goal.slug)
             }}
             className='col-span-2'
           >
-            進捗管理
+            進捗登録
           </div>
         </div>
       ))}
       <Modal
-        isOpen={showProgressModal}
+        isOpen={showRegisterProgressModal}
         title='進捗登録'
-        onClose={() => setShowProgressModal(false)}
+        onClose={() => setShowRegisterProgressModal(false)}
       >
         <div>
           <EditProgressLogForm />
