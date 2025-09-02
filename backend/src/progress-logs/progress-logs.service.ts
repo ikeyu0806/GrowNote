@@ -19,7 +19,7 @@ export class ProgressLogsService {
 
     return {
       goalSlug,
-      logs: goal.ProgressLog,
+      progressLogs: goal.ProgressLog,
     }
   }
 

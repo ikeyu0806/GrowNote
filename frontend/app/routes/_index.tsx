@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Modal from '../components/base/Modal'
+import ProgressLogList from '../components/progressLog/IndexList'
 import EditProgressLogForm from '../components/progressLog/EditForm'
 import { useAtom } from 'jotai'
 import {
@@ -79,7 +80,7 @@ export default function Dashboard() {
         title='進捗一覧'
         onClose={() => setShowIndexProgressModal(false)}
       >
-        <div>進捗一覧</div>
+        <ProgressLogList />
       </Modal>
       <Modal
         isOpen={showCreateProgressModal}
