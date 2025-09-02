@@ -2,6 +2,7 @@ import { InputForm } from '../base/InputForm'
 import { TextareaForm } from '../base/TextareaForm'
 import { useAtom } from 'jotai'
 import {
+  progressLogDateAtom,
   progressLogContentAtom,
   progressLogProgressRateAtom,
 } from '../../atoms/progressLogAtmos'
@@ -11,6 +12,7 @@ import { Button } from '../base/Button'
 import axios from 'axios'
 
 export default function EditProgressLogForm() {
+  const [progressLogDate, setProgressLogDate] = useAtom(progressLogDateAtom)
   const [progressLogContent, setProgressLogContent] = useAtom(
     progressLogContentAtom,
   )
@@ -19,11 +21,12 @@ export default function EditProgressLogForm() {
   )
   const progressLogGoalSlug = useAtomValue(progressLogGoalSlugAtom)
 
-    const handleSubmit = async () => {
+  const handleSubmit = async () => {
     try {
       const res = await axios.post(
         `http://localhost:4000/api/internal/goals/${progressLogGoalSlug}/progress_logs`,
         {
+          date: progressLogDate,
           content: progressLogContent,
           progressRate: progressLogProgressRate,
         },
@@ -39,6 +42,13 @@ export default function EditProgressLogForm() {
 
   return (
     <>
+      <InputForm
+        id='goalTitle'
+        label='対象日'
+        type='date'
+        value={progressLogDate}
+        onChange={(e) => setProgressLogDate(e.target.value)}
+      />
       <TextareaForm
         id='goalDescription'
         label='説明'
@@ -53,9 +63,7 @@ export default function EditProgressLogForm() {
         onChange={(e) => setProgressLogProgressRate(Number(e.target.value))}
         type='number'
       />
-      <Button
-        onClick={handleSubmit}
-      >登録する</Button>
+      <Button onClick={handleSubmit}>登録する</Button>
     </>
   )
 }
