@@ -10,6 +10,6 @@ export const progressLogDateAtom = atom('') // ISO文字列で管理
 export const progressLogContentAtom = atom('')
 export const progressLogStudyTimeAtom = atom<number | ''>('')
 export const progressLogProgressRateAtom = atom<number | ''>('')
-export const progressLogMoodAtom = atom<Mood | ''>('')
+export const progressLogMoodAtom = atom<Mood | ''>(Mood.Good)
 export const progressLogGoalIdAtom = atom<number | null>(null)
 export const progressLogGoalSlugAtom = atom<string>('')
