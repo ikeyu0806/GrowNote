@@ -7,6 +7,7 @@ import {
 } from '../../atoms/progressLogAtmos'
 import { progressLogGoalSlugAtom } from '../../atoms/progressLogAtmos'
 import { useAtomValue } from 'jotai'
+import { Button } from '../base/Button'
 
 export default function EditProgressLogForm() {
   const [progressLogContent, setProgressLogContent] = useAtom(
@@ -33,6 +34,9 @@ export default function EditProgressLogForm() {
         onChange={(e) => setProgressLogProgressRate(Number(e.target.value))}
         type='number'
       />
+      <Button
+        onClick={console.log('clicked')}
+      >登録する</Button>
     </>
   )
 }
