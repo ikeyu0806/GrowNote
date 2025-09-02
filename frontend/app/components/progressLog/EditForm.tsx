@@ -5,6 +5,8 @@ import {
   progressLogContentAtom,
   progressLogProgressRateAtom,
 } from '../../atoms/progressLogAtmos'
+import { progressLogGoalSlugAtom } from '../../atoms/progressLogAtmos'
+import { useAtomValue } from 'jotai'
 
 export default function EditProgressLogForm() {
   const [progressLogContent, setProgressLogContent] = useAtom(
@@ -13,6 +15,7 @@ export default function EditProgressLogForm() {
   const [progressLogProgressRate, setProgressLogProgressRate] = useAtom(
     progressLogProgressRateAtom,
   )
+  const progressLogGoalSlug = useAtomValue(progressLogGoalSlugAtom)
 
   return (
     <>
