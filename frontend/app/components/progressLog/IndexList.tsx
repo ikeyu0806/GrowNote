@@ -45,16 +45,23 @@ export default function ProgressLogList() {
         <p>進捗ログがありません</p>
       ) : (
         <ul className='space-y-4'>
-          {progressLogs && progressLogs.map((log) => (
-            <li
-              key={log.id}
-              className='border p-3 rounded shadow-sm bg-white'
-            >
-              <p><strong>対象日:</strong> {log.date}</p>
-              <p><strong>学習時間:</strong> {log.progressRate}</p>
-              <p><strong>内容:</strong> {log.content}</p>
-            </li>
-          ))}
+          {progressLogs &&
+            progressLogs.map((log) => (
+              <li
+                key={log.id}
+                className='border p-3 rounded shadow-sm bg-white'
+              >
+                <p>
+                  <strong>対象日:</strong> {log.date}
+                </p>
+                <p>
+                  <strong>学習時間:</strong> {log.progressRate}
+                </p>
+                <p>
+                  <strong>内容:</strong> {log.content}
+                </p>
+              </li>
+            ))}
         </ul>
       )}
     </div>
