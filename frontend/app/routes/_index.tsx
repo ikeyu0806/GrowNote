@@ -5,6 +5,10 @@ import ProgressLogList from '../components/progressLog/IndexList'
 import EditProgressLogForm from '../components/progressLog/EditForm'
 import { useAtom } from 'jotai'
 import {
+  showIndexMilestoneModalAtom,
+  showCreateMilestoneModalAtom,
+} from '../atoms/milestoneModalAtoms'
+import {
   showIndexProgressModalAtom,
   showCreateProgressModalAtom,
 } from '../atoms/progressLogModalAtoms'
@@ -15,6 +19,12 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  const [showIndexMilestoneModal, setShowIndexMilestoneModal] = useAtom(
+    showIndexMilestoneModalAtom,
+  )
+  const [showCreateMilestoneModal, setShowCreateMilestoneModal] = useAtom(
+    showCreateMilestoneModalAtom,
+  )
   const [showIndexProgressModal, setShowIndexProgressModal] = useAtom(
     showIndexProgressModalAtom,
   )
@@ -103,6 +113,22 @@ export default function Dashboard() {
         </div>
       ))}
 
+      <Modal
+        isOpen={showIndexMilestoneModal}
+        title='マイルストーン一覧'
+        onClose={() => setShowIndexMilestoneModal(false)}
+      >
+        <div>マイルストーン一覧</div>
+      </Modal>
+      <Modal
+        isOpen={showCreateMilestoneModal}
+        title='マイルストーン登録'
+        onClose={() => setShowCreateMilestoneModal(false)}
+      >
+        <div>
+          マイルストーン登録
+        </div>
+      </Modal>
       <Modal
         isOpen={showIndexProgressModal}
         title='進捗一覧'
