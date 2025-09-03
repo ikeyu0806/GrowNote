@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Modal from '../components/base/Modal'
 import ProgressLogList from '../components/progressLog/IndexList'
+import MilestoneList from '../components/milestone/IndexList'
 import EditProgressLogForm from '../components/progressLog/EditForm'
 import { useAtom } from 'jotai'
 import {
@@ -12,6 +13,7 @@ import {
   showIndexProgressModalAtom,
   showCreateProgressModalAtom,
 } from '../atoms/progressLogModalAtoms'
+import { milestoneGoalSlugAtom } from '../atoms/milestoneAtoms'
 import { progressLogGoalSlugAtom } from '../atoms/progressLogAtoms'
 
 export default function Dashboard() {
@@ -30,6 +32,9 @@ export default function Dashboard() {
   )
   const [showCreateProgressModal, setShowCreateProgressModal] = useAtom(
     showCreateProgressModalAtom,
+  )
+  const [milestoneGoalSlug, setMilestoneGoalSlug] = useAtom(
+    milestoneGoalSlugAtom,
   )
   const [progressGoalSlug, setProgressGoalSlug] = useAtom(
     progressLogGoalSlugAtom,
@@ -76,12 +81,15 @@ export default function Dashboard() {
               編集する
             </a>
 
-            <a
-              href={`/goals/${goal.slug}/milestones`}
+            <button
+              onClick={() => {
+                setShowIndexMilestoneModal(true)
+                setMilestoneGoalSlug(goal.slug)
+              }}
               className='px-4 py-2 text-sm font-medium text-orange-600 bg-orange-50 rounded-xl hover:bg-orange-100 dark:bg-orange-900 dark:text-orange-200 dark:hover:bg-orange-800'
             >
               マイルストーン一覧
-            </a>
+            </button>
 
             <a
               href={`/goals/${goal.slug}/milestones/create`}
@@ -118,16 +126,14 @@ export default function Dashboard() {
         title='マイルストーン一覧'
         onClose={() => setShowIndexMilestoneModal(false)}
       >
-        <div>マイルストーン一覧</div>
+        <MilestoneList />
       </Modal>
       <Modal
         isOpen={showCreateMilestoneModal}
         title='マイルストーン登録'
         onClose={() => setShowCreateMilestoneModal(false)}
       >
-        <div>
-          マイルストーン登録
-        </div>
+        <div>マイルストーン登録</div>
       </Modal>
       <Modal
         isOpen={showIndexProgressModal}
