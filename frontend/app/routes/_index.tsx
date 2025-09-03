@@ -5,7 +5,7 @@ import ProgressLogList from '../components/progressLog/IndexList'
 import MilestoneList from '../components/milestone/IndexList'
 import EditMilestoneForm from '../components/milestone/EditForm'
 import EditProgressLogForm from '../components/progressLog/EditForm'
-import { useAtom } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
 import {
   showIndexMilestoneModalAtom,
   showCreateMilestoneModalAtom,
@@ -34,12 +34,8 @@ export default function Dashboard() {
   const [showCreateProgressModal, setShowCreateProgressModal] = useAtom(
     showCreateProgressModalAtom,
   )
-  const [milestoneGoalSlug, setMilestoneGoalSlug] = useAtom(
-    milestoneGoalSlugAtom,
-  )
-  const [progressGoalSlug, setProgressGoalSlug] = useAtom(
-    progressLogGoalSlugAtom,
-  )
+  const setMilestoneGoalSlug = useSetAtom(milestoneGoalSlugAtom)
+  const setProgressGoalSlug = useSetAtom(progressLogGoalSlugAtom)
 
   useEffect(() => {
     axios
