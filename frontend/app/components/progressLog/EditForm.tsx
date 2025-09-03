@@ -5,8 +5,8 @@ import {
   progressLogDateAtom,
   progressLogContentAtom,
   progressLogProgressRateAtom,
-} from '../../atoms/progressLogAtms'
-import { progressLogGoalSlugAtom } from '../../atoms/progressLogAtms'
+} from '../../atoms/progressLogAtoms'
+import { progressLogGoalSlugAtom } from '../../atoms/progressLogAtoms'
 import { useAtomValue } from 'jotai'
 import { Button } from '../base/Button'
 import axios from 'axios'
