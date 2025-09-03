@@ -92,9 +92,10 @@ npx prisma db pull
 
 prismaの内容をDBに反映
 ```
-npx prisma db pull
+npx prisma db push
 ```
 
+migration実行
 ```
 npx prisma migrate dev
 ```

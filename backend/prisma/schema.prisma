@@ -24,6 +24,7 @@ model Goal {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   ProgressLog ProgressLog[]
+  Milestone   Milestone[]
 }
 
 enum GoalStatus {
@@ -50,4 +51,22 @@ enum Mood {
   good
   normal
   bad
+}
+
+model Milestone {
+  id        Int             @id @default(autoincrement())
+  slug      String          @default(uuid())
+  goalId    Int
+  goal      Goal            @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  title     String
+  dueDate   DateTime?       @db.Date
+  status    MilestoneStatus @default(not_started)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+enum MilestoneStatus {
+  not_started
+  in_progress
+  done
 }
