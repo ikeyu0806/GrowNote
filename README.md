@@ -79,8 +79,23 @@ curl -X POST http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70
 ```
 
 ## Prisma
+
+prismaファイルのフォーマット
+```
+prisma format
+```
+
+DBの内容をprismaに反映
 ```
 npx prisma db pull
+```
+
+prismaの内容をDBに反映
+```
+npx prisma db pull
+```
+
+```
 npx prisma migrate dev
 ```
 
