@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { progressLogGoalSlugAtom } from '../../atoms/progressLogAtmos'
+import { progressLogGoalSlugAtom } from '../../atoms/progressLogAtms'
 import { useAtomValue } from 'jotai'
 
 type ProgressLog = {

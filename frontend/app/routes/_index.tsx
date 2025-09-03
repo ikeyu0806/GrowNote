@@ -12,7 +12,7 @@ import {
   showIndexProgressModalAtom,
   showCreateProgressModalAtom,
 } from '../atoms/progressLogModalAtoms'
-import { progressLogGoalSlugAtom } from '../atoms/progressLogAtmos'
+import { progressLogGoalSlugAtom } from '../atoms/progressLogAtms'
 
 export default function Dashboard() {
   const [goals, setGoals] = useState<any[]>([])
