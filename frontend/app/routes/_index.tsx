@@ -67,10 +67,17 @@ export default function Dashboard() {
             </a>
 
             <a
-              href={`/goals/${goal.slug}/milestons`}
-              className='px-4 py-2 text-sm font-medium text-green-600 bg-green-50 rounded-xl hover:bg-green-100 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-800'
+              href={`/goals/${goal.slug}/milestones`}
+              className='px-4 py-2 text-sm font-medium text-orange-600 bg-orange-50 rounded-xl hover:bg-orange-100 dark:bg-orange-900 dark:text-orange-200 dark:hover:bg-orange-800'
             >
-              マイルストーン
+              マイルストーン一覧
+            </a>
+
+            <a
+              href={`/goals/${goal.slug}/milestones/create`}
+              className='px-4 py-2 text-sm font-medium text-pink-600 bg-pink-50 rounded-xl hover:bg-pink-100 dark:bg-pink-900 dark:text-pink-200 dark:hover:bg-pink-800'
+            >
+              マイルストーン登録
             </a>
 
             <button
