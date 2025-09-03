@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
-import { CreateMilestoneDto } from '../progress-logs/dto/create-milestone.dto'
+import { CreateMilestoneDto } from './dto/create-milestone.dto'
 import { PrismaClient } from '../../generated/prisma'
 
 const prisma = new PrismaClient()

@@ -78,6 +78,22 @@ curl -X POST http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70
   }'
 ```
 
+目標に紐づくマイルストーン一覧取得
+```
+curl -X GET http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70d8f96dac71/milestones
+```
+
+目標に紐づくマイルストーン作成
+```
+curl -X POST http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70d8f96dac71/milestones  \
+  -H "Content-Type: application/json" \
+  -d '
+{
+  "title": "ダイクストラ法学習",
+  "dueDate": "2025-01-01",
+  "status": "in_progress"
+}'
+```
 ## Prisma
 
 prismaファイルのフォーマット
