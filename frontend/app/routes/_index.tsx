@@ -3,6 +3,7 @@ import axios from 'axios'
 import Modal from '../components/base/Modal'
 import ProgressLogList from '../components/progressLog/IndexList'
 import MilestoneList from '../components/milestone/IndexList'
+import EditMilestoneForm from '../components/milestone/EditForm'
 import EditProgressLogForm from '../components/progressLog/EditForm'
 import { useAtom } from 'jotai'
 import {
@@ -91,12 +92,15 @@ export default function Dashboard() {
               マイルストーン一覧
             </button>
 
-            <a
-              href={`/goals/${goal.slug}/milestones/create`}
+            <button
+              onClick={() => {
+                setShowCreateMilestoneModal(true)
+                setMilestoneGoalSlug(goal.slug)
+              }}
               className='px-4 py-2 text-sm font-medium text-pink-600 bg-pink-50 rounded-xl hover:bg-pink-100 dark:bg-pink-900 dark:text-pink-200 dark:hover:bg-pink-800'
             >
               マイルストーン登録
-            </a>
+            </button>
 
             <button
               onClick={() => {
@@ -133,7 +137,7 @@ export default function Dashboard() {
         title='マイルストーン登録'
         onClose={() => setShowCreateMilestoneModal(false)}
       >
-        <div>マイルストーン登録</div>
+        <EditMilestoneForm />
       </Modal>
       <Modal
         isOpen={showIndexProgressModal}
