@@ -1,77 +1,42 @@
-import { PrismaClient, MilestoneStatus } from '../generated/prisma'
+import { PrismaClient } from '@prisma/client'
+import { subDays } from 'date-fns'
 
 const prisma = new PrismaClient()
 
 async function main() {
-  // ユーティリティ: 連続する日付の配列を生成
-  const generateMilestones = (titlePrefix: string, startDate: string) => {
-    const base = new Date(startDate)
-    return Array.from({ length: 7 }, (_, i) => ({
-      title: `${titlePrefix} Day ${i + 1}`,
-      dueDate: new Date(base.getTime() + i * 24 * 60 * 60 * 1000),
-      status:
-        i === 0 ? MilestoneStatus.in_progress : MilestoneStatus.not_started,
-    }))
+  // まずDBをクリア
+  await prisma.progressLog.deleteMany()
+  await prisma.milestone.deleteMany()
+  await prisma.goal.deleteMany()
+
+  // Goalを作成
+  const goal = await prisma.goal.create({
+    data: {
+      title: '毎日30分運動する',
+      slug: 'cdd9cda6-4d43-45f9-8fa1-70d8f96dac71',
+      description: '健康維持のため毎日運動を習慣化する',
+      Milestone: {
+        create: [
+          { title: '1週間続ける'},
+          { title: '1ヶ月続ける' },
+          { title: '3ヶ月続ける' },
+        ],
+      },
+    },
+  })
+
+  // 直近7日分のprogress_logsを登録
+  const today = new Date()
+  for (let i = 0; i < 7; i++) {
+    const date = subDays(today, i)
+    await prisma.progressLog.create({
+      data: {
+        goalId: goal.id,
+        content: `${i + 1}日目の進捗: 運動しました`,
+        date: date,
+      },
+    })
   }
-
-  // Goal 1
-  const goal1 = await prisma.goal.create({
-    data: {
-      slug: '11111111-1111-1111-1111-111111111111',
-      title: 'アルゴリズムを習得する',
-      description: '毎日少しずつアルゴリズムの問題を解いて、理解を深める',
-      targetDate: new Date('2025-12-31'),
-      status: 'ongoing',
-      ProgressLog: {
-        create: [
-          {
-            date: new Date('2025-08-30T12:00:00Z'),
-            content: 'DP の基礎を2時間勉強した',
-            studyTime: 120,
-            progressRate: 20,
-            mood: 'good',
-          },
-          {
-            date: new Date('2025-08-31T12:00:00Z'),
-            content: 'グラフアルゴリズムを1時間解いた',
-            studyTime: 60,
-            progressRate: 30,
-            mood: 'normal',
-          },
-        ],
-      },
-      Milestone: {
-        create: generateMilestones('アルゴリズム学習', '2025-09-01'),
-      },
-    },
-  })
-
-  // Goal 2
-  const goal2 = await prisma.goal.create({
-    data: {
-      slug: '22222222-2222-2222-2222-222222222222',
-      title: '英語の読解力を伸ばす',
-      description: '技術記事を英語で読めるようになる',
-      targetDate: new Date('2026-03-31'),
-      status: 'ongoing',
-      ProgressLog: {
-        create: [
-          {
-            date: new Date('2025-08-29T09:00:00Z'),
-            content: '英語記事を1本読んだ',
-            studyTime: 45,
-            progressRate: 10,
-            mood: 'good',
-          },
-        ],
-      },
-      Milestone: {
-        create: generateMilestones('英語学習', '2025-09-01'),
-      },
-    },
-  })
-
-  console.log({ goal1, goal2 })
 }
 
 main()

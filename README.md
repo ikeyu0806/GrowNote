@@ -119,3 +119,8 @@ npx prisma migrate dev
 ```
 npx prisma migrate dev --name add_progress_log
 ```
+
+seed登録
+```
+npm run seed
+```
