@@ -9,7 +9,7 @@ import {
   IsEnum,
 } from 'class-validator'
 import { Type } from 'class-transformer'
-import { Mood } from '../../../generated/prisma'
+import { Mood } from '@prisma/client'
 
 export class CreateProgressLogDto {
   @IsDateString()

@@ -1,8 +1,19 @@
-import { PrismaClient } from '../generated/prisma'
+import { PrismaClient, MilestoneStatus } from '../generated/prisma'
 
 const prisma = new PrismaClient()
 
 async function main() {
+  // ユーティリティ: 連続する日付の配列を生成
+  const generateMilestones = (titlePrefix: string, startDate: string) => {
+    const base = new Date(startDate)
+    return Array.from({ length: 7 }, (_, i) => ({
+      title: `${titlePrefix} Day ${i + 1}`,
+      dueDate: new Date(base.getTime() + i * 24 * 60 * 60 * 1000),
+      status:
+        i === 0 ? MilestoneStatus.in_progress : MilestoneStatus.not_started,
+    }))
+  }
+
   // Goal 1
   const goal1 = await prisma.goal.create({
     data: {
@@ -30,18 +41,7 @@ async function main() {
         ],
       },
       Milestone: {
-        create: [
-          {
-            title: '動的計画法を理解する',
-            dueDate: new Date('2025-09-30'),
-            status: 'in_progress',
-          },
-          {
-            title: 'グラフ理論の基礎をマスターする',
-            dueDate: new Date('2025-10-31'),
-            status: 'not_started',
-          },
-        ],
+        create: generateMilestones('アルゴリズム学習', '2025-09-01'),
       },
     },
   })
@@ -66,18 +66,7 @@ async function main() {
         ],
       },
       Milestone: {
-        create: [
-          {
-            title: '毎日1記事読む習慣をつける',
-            dueDate: new Date('2025-09-15'),
-            status: 'in_progress',
-          },
-          {
-            title: '技術英語の専門用語を100語覚える',
-            dueDate: new Date('2025-11-30'),
-            status: 'not_started',
-          },
-        ],
+        create: generateMilestones('英語学習', '2025-09-01'),
       },
     },
   })
