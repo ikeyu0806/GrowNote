@@ -19,8 +19,6 @@ import { progressLogGoalSlugAtom } from '../atoms/progressLogAtoms'
 
 export default function Dashboard() {
   const [goals, setGoals] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   const [showIndexMilestoneModal, setShowIndexMilestoneModal] = useAtom(
     showIndexMilestoneModalAtom,
@@ -42,12 +40,9 @@ export default function Dashboard() {
       .get('http://localhost:4000/api/internal/goals')
       .then((res) => {
         setGoals(res.data)
-        setLoading(false)
       })
       .catch((err) => {
         console.error(err)
-        setError('データ取得に失敗しました')
-        setLoading(false)
       })
   }, [])
 
