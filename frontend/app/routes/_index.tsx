@@ -13,6 +13,7 @@ import {
 import {
   showIndexProgressModalAtom,
   showCreateProgressModalAtom,
+  showProgressGraphModalAtom
 } from '../atoms/progressLogModalAtoms'
 import { milestoneGoalSlugAtom } from '../atoms/milestoneAtoms'
 import { progressLogGoalSlugAtom } from '../atoms/progressLogAtoms'
@@ -31,6 +32,9 @@ export default function Dashboard() {
   )
   const [showCreateProgressModal, setShowCreateProgressModal] = useAtom(
     showCreateProgressModalAtom,
+  )
+  const [showProgressGraphModal, setShowProgressGraphModal] = useAtom(
+    showProgressGraphModalAtom,
   )
   const setMilestoneGoalSlug = useSetAtom(milestoneGoalSlugAtom)
   const setProgressGoalSlug = useSetAtom(progressLogGoalSlugAtom)
@@ -115,7 +119,8 @@ export default function Dashboard() {
 
             <button
               onClick={() => {
-                console.log('進捗グラフを表示')
+                setShowProgressGraphModal(true)
+                setProgressGoalSlug(goal.slug)
               }}
               className='px-4 py-2 text-sm font-medium text-green-600 bg-green-50 rounded-xl hover:bg-green-100 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-800'
             >
@@ -153,6 +158,15 @@ export default function Dashboard() {
       >
         <div>
           <EditProgressLogForm />
+        </div>
+      </Modal>
+      <Modal
+        isOpen={showProgressGraphModal}
+        title='進捗登録'
+        onClose={() => setShowProgressGraphModal(false)}
+      >
+        <div>
+          グラフ
         </div>
       </Modal>
     </>
