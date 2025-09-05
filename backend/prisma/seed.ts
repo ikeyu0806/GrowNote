@@ -17,7 +17,7 @@ async function main() {
       description: '健康維持のため毎日運動を習慣化する',
       Milestone: {
         create: [
-          { title: '1週間続ける'},
+          { title: '1週間続ける' },
           { title: '1ヶ月続ける' },
           { title: '3ヶ月続ける' },
         ],

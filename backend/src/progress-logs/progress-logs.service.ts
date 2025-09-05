@@ -50,4 +50,34 @@ export class ProgressLogsService {
       data: progressLog,
     }
   }
+
+  async getBarGraph(goalSlug: string) {
+    const goal = await prisma.goal.findUnique({
+      where: { slug: goalSlug },
+    })
+
+    if (!goal) {
+      throw new NotFoundException(`Goal with slug "${goalSlug}" not found`)
+    }
+
+    // 日別に勉強時間を合計
+    const logs = await prisma.progressLog.groupBy({
+      by: ['date'],
+      where: { goalId: goal.id },
+      _sum: {
+        studyTime: true,
+      },
+      orderBy: {
+        date: 'asc',
+      },
+    })
+
+    return {
+      goalSlug,
+      logs: logs.map((l) => ({
+        date: l.date.toISOString().split('T')[0], // "YYYY-MM-DD"形式
+        studyTime: l._sum.studyTime ?? 0,
+      })),
+    }
+  }
 }
