@@ -5,6 +5,7 @@ import ProgressLogList from '../components/progressLog/IndexList'
 import MilestoneList from '../components/milestone/IndexList'
 import EditMilestoneForm from '../components/milestone/EditForm'
 import EditProgressLogForm from '../components/progressLog/EditForm'
+import StadyTimeBarGraph from '../components/progressLog/StadyTimeBarGraph'
 import { useAtom, useSetAtom } from 'jotai'
 import {
   showIndexMilestoneModalAtom,
@@ -165,9 +166,7 @@ export default function Dashboard() {
         title='進捗登録'
         onClose={() => setShowProgressGraphModal(false)}
       >
-        <div>
-          グラフ
-        </div>
+        <StadyTimeBarGraph />
       </Modal>
     </>
   )
