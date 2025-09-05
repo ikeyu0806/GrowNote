@@ -29,11 +29,16 @@ async function main() {
   const today = new Date()
   for (let i = 0; i < 7; i++) {
     const date = subDays(today, i)
+
+    // 30分～180分のランダム値を生成
+    const studyTime = Math.floor(Math.random() * (180 - 30 + 1)) + 30
+
     await prisma.progressLog.create({
       data: {
         goalId: goal.id,
         content: `${i + 1}日目の進捗: 運動しました`,
         date: date,
+        studyTime: studyTime,
       },
     })
   }
