@@ -13,7 +13,7 @@ async function main() {
   const goal = await prisma.goal.create({
     data: {
       title: '毎日30分運動する',
-      slug: 'cdd9cda6-4d43-45f9-8fa1-70d8f96dac71',
+      slug: 'cdd9cda6-4d43-45f9-8fa1-70d8f96dac71', // 開発しやすいよう固定
       description: '健康維持のため毎日運動を習慣化する',
       Milestone: {
         create: [
