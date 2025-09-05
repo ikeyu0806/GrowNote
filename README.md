@@ -65,6 +65,11 @@ curl -X DELETE http://localhost:4000/api/internal/goals/a7a16174-bdaf-424a-a665-
 curl -X GET http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70d8f96dac71/progress_logs
 ```
 
+グラフ描画用進捗一覧取得
+```
+curl -X GET http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70d8f96dac71/progress_logs/bar_graph
+```
+
 目標進捗登録
 ```
 curl -X POST http://localhost:4000/api/internal/goals/cdd9cda6-4d43-45f9-8fa1-70d8f96dac71/progress_logs \
